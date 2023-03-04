@@ -13,4 +13,9 @@ class Category extends Model
         'slug',
         
     ];
+    public function SubCategory()
+    {
+        return $this->SubCategory(SubCategory::class);
+    }
+
 }

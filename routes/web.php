@@ -28,7 +28,7 @@ Route::get('/dashboard', function () {
 
 //Route::get('/userprofile', [DashboardController::class,'Index']);
 
-Route::middleware(['auth','role:admin'])->group(function () {//////////////////
+Route::middleware(['auth','role:admin'])->group(function () {
     Route::controller(DashboardController::class)->group(function(){
     Route::get('/admin/dashboard','Index')->name('admindashboard');
    
@@ -45,11 +45,16 @@ Route::middleware(['auth','role:admin'])->group(function () {//////////////////
 
 Route::get('/admin/all-category',[CategoryController::class,'Index'])->name('allcategory');
 Route::get('/admin/add-category',[CategoryController::class,'AddCategory'])->name('addcategory');
+Route::post('/admin/store-category',[CategoryController::class,'StoreCategory'])->name('storecategory');
+Route::get('/admin/edit-category/{id}',[CategoryController::class,'EditCategory'])->name('editcategory');
+Route::get('/admin/delete-category/{id}',[CategoryController::class,'DeleteCategory'])->name('deletecategory');
+Route::post('/admin/update-category',[CategoryController::class,'UpdateCategory'])->name('updatecategory');
 
 
 Route::controller(SubCategoryController::class)->group(function(){
     Route::get('/admin/all-subcategory','Index')->name('allsubcategory');
     Route::get('/admin/add-subcategory','AddSubCategory')->name('addsubcategory');
+    Route::post('/admin/store-subcategory','StoreSubCategory')->name('storesubcategory');
    
 });   
 Route::controller(ProductController::class)->group(function(){
